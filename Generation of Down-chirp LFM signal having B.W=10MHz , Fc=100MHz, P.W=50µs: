@@ -1,0 +1,23 @@
+clc;
+close all;
+clear all;
+recta=@(x,a) ones(1,numel(x)).*(abs(x)<a/2)
+tau=50*(10^-6)
+t = (-tau):1*(10^-8):0;
+t0= (-tau/2):1*(10^-8):(tau/2);
+f0=100e6;
+k =0.02e13;
+f =f0-(k*t0);
+amplitude=2;
+phi=2*pi*(f0*t-k*t/2.*t);
+s1=(recta(t,tau)).*exp(2*pi*i.*(f0*t-k*t/2.*t));
+subplot(2,1,1)
+plot(t0,f)
+xlabel('time');
+ylabel('frequency');
+title('Linear Frequency Modulation');
+subplot(2,1,2);
+plot(t,s1)
+xlabel('time');
+ylabel('Down-Chirp LFM');
+title('Down chirp');
